@@ -18,6 +18,7 @@ service:
 sftpConfig:
   username: sftp
   password: ""
+  dir: ""
   encrypted: false
   uid: ""
   gid: ""
