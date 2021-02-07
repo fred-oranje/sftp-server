@@ -109,6 +109,14 @@ spec:
         - name: init-myservice
           image: busybox:1.28
           command: ['sh', '-c', "[ -d /home/{{- .Values.sftpConfig.username -}}{{- .Values.sftpConfig.dir -}} ] || mkdir /home/{{- .Values.sftpConfig.username -}}{{- .Values.sftpConfig.dir -}}"]
+          volumeMounts:
+            {{- if .Values.persistentVolume.enabled }}
+            - name: data
+              mountPath: /home/ {{- .Values.sftpConfig.username -}} /
+              {{- if .Values.persistentVolume.subPath }}
+              subPath: "{{ .Values.persistentVolume.subPath }}"
+              {{- end }}
+            {{- end }}
       volumes:
       - name: sftp-config
         configMap:
