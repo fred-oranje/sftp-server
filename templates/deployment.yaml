@@ -108,7 +108,7 @@ spec:
       initContainers:
         - name: init-myservice
           image: busybox:1.28
-          command: ['sh', '-c', "mkdir /home/{{- .Values.sftpConfig.username -}}{{- .Values.sftpConfig.dir -}}; chown 1000:1000 /home/{{- .Values.sftpConfig.username -}}{{- .Values.sftpConfig.dir -}}; exit 0;"]
+          command: ['sh', '-c', "mkdir /home/{{- .Values.sftpConfig.username -}}/{{- .Values.sftpConfig.dir -}}; chown 1000:1000 /home/{{- .Values.sftpConfig.username -}}/{{- .Values.sftpConfig.dir -}}; exit 0;"]
           volumeMounts:
             {{- if .Values.persistentVolume.enabled }}
             - name: data
